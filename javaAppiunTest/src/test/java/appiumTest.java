@@ -3,6 +3,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.events.EventFiringWebDriverFactory;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.After;
 import org.junit.Before;
@@ -14,8 +15,6 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -37,16 +36,22 @@ public class appiumTest {
      * @throws Exception
      */
 
-    private String root = "/hierarchy/android.widget.FrameLayout" +
-            "/android.widget.LinearLayout/android.widget.FrameLayout" +
-            "/android.widget.LinearLayout/android.widget.FrameLayout" +
-            "/android.widget.RelativeLayout/android.widget.FrameLayout[2]" +
-            "/android.widget.LinearLayout/android.widget.RelativeLayout" +
-            "/android.support.v4.view.ViewPager/android.widget.RelativeLayout" +
-            "/android.view.ViewGroup/android.widget.FrameLayout/android.support.v7.widget.RecyclerView" +
-            "/android.widget.LinearLayout[1]/android.widget.RelativeLayout";
+    private String adText="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout" +
+            "/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout" +
+            "/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup" +
+            "/android.widget.FrameLayout/android.support.v7.widget.RecyclerView/android.widget.RelativeLayout" +
+            "/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TextView[2]";
 
-    private String adText=root+"/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TextView[2]";
+    private String endAdText="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout" +
+            "/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout" +
+            "/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup" +
+            "/android.widget.FrameLayout/android.support.v7.widget.RecyclerView" +
+            "/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.RelativeLayout" +
+            "/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TextView";
+
+
     private String deviceName1="YAUNW18316005478";
     private String deviceName2="7579c470";
 
@@ -55,6 +60,7 @@ public class appiumTest {
     private String currentTotalTime="";
     private long timeCount=0;
     private boolean isLogin=true;
+    private int totalMoney=0;
 
     @Before
     public void setup() throws Exception {
@@ -72,6 +78,8 @@ public class appiumTest {
         cap.setCapability("fullReset", false);
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
         timeouts = driver.manage().timeouts();
+
+//        driver=EventFiringWebDriverFactory.getEventFiringWebDriver(driver,new ElementListener());
     }
 
     @Test
@@ -113,11 +121,9 @@ public class appiumTest {
         MobileElement el13 = (MobileElement) driver.findElementById("com.jifen.qukan:id/jx");
         el13.click();
 
-        timeouts.implicitlyWait(1500, TimeUnit.MILLISECONDS);
+        timeouts.implicitlyWait(1000, TimeUnit.MILLISECONDS);
 
-        //判断列表是否是广告类型
-        MobileElement elAd = (MobileElement) isElementPresent(By.xpath(adText));
-        judgeAdvice(elAd);
+        autoClickPlayVideo();
     }
 
     /**
@@ -149,28 +155,34 @@ public class appiumTest {
 
     /**
      * 自动点击播放
-     * @param elAd
      */
-    private void judgeAdvice(MobileElement elAd) {
-        boolean isAd=elAd!=null&&(elAd.getAttribute("text").equals("广告"));
-        if (!isAd) {
+    private void autoClickPlayVideo() {
+        //判断列表item是否是广告类型
+        boolean isElAd=judgeIsAd(By.xpath(adText));
+
+        //判断是否是播放结束后的广告
+        boolean isEndElAd=judgeIsAd(By.xpath(endAdText));
+
+        if (isElAd){
+            logger.info("===此条是广告===");
+            continueHandle();
+        }else if (isEndElAd){
+            logger.info("===已进入广告===");
+            continueHandle();
+        }else {
             //非广告
 
             //获取时长
-            MobileElement timeTv = (MobileElement) driver.findElementById("com.jifen.qukan:id/a80");
+
+            MobileElement timeTv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a80"));
             String duration = timeTv.getAttribute("text");
             String[] split = duration.split(":");
-            long time = (Integer.parseInt(split[0]) * 60 + Integer.parseInt(split[1]));
+            long time = (Integer.parseInt(split[0]) * 60 + Integer.parseInt(split[1]   ));
             logger.info("duration===" + duration + "time===" + time);
 
-            driver.findElementByAccessibilityId("com.jifen.qukan:id/a80");
             //播放按钮
             MobileElement playIv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a6k"));
-            if (playIv!=null){
-                playIv.click();
-            }else {
-                timeTv.click();
-            }
+            playIv.click();
             //总时长
             timeCount += time;
 
@@ -184,6 +196,8 @@ public class appiumTest {
                 @Override
                 public WebElement apply(WebDriver webDriver) {
                     MobileElement webElement = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/aej"));
+                    //统计金币数量
+                    //plusMoney();
                     if (webElement!=null){
                         String value=webElement.getAttribute("text");
                         if (value.equals("重播")){
@@ -200,14 +214,31 @@ public class appiumTest {
                 }
             });
 
-            currentTotalTime="当前已播放总时长："+ timeCount +"s";
+            currentTotalTime="已播放总时长："+ timeCount +"s";
             logger.info("===播放完毕==="+currentTotalTime);
 
             continueHandle();
-        }else {
-            logger.info("===此条是广告===");
-            continueHandle();
         }
+    }
+
+    private void plusMoney() {
+        WebElement webElement = isElementPresent(By.id("com.jifen.qukan:id/ajq"));
+        if (webElement!=null){
+            String value=webElement.getAttribute("text");
+            System.out.println("金币值:" +value);
+            int money=Integer.parseInt(value.replace("+",""));
+            totalMoney+=money;
+        }
+    }
+
+    /**
+     * 判断是否是广告
+     * @param by
+     * @return
+     */
+    private boolean judgeIsAd(By by) {
+        MobileElement elAd = (MobileElement) isElementPresent(by);
+        return elAd!=null&&(elAd.getAttribute("text").equals("广告"));
     }
 
     /**
@@ -217,12 +248,11 @@ public class appiumTest {
         logger.info("===继续播放下一个===");
         (new TouchAction(driver))
                 .press(PointOption.point(542, 885))
-                .moveTo(PointOption.point(542, 815))
+                .moveTo(PointOption.point(542, 845))
                 .release()
                 .perform();
         timeouts.implicitlyWait(1000, TimeUnit.MILLISECONDS);
-        MobileElement elAdAgain = (MobileElement) isElementPresent(By.xpath(adText));
-        judgeAdvice(elAdAgain);
+        autoClickPlayVideo();
     }
 
     /**
