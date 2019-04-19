@@ -51,6 +51,13 @@ public class appiumTest {
             "/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.RelativeLayout" +
             "/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TextView";
 
+    private String endAdText2="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout" +
+            "/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout" +
+            "/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout" +
+            "/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup" +
+            "/android.widget.FrameLayout/android.support.v7.widget.RecyclerView" +
+            "/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.widget.RelativeLayout" +
+            "/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.TextView[1]";
 
     private String deviceName1="YAUNW18316005478";
     private String deviceName2="7579c470";
@@ -118,12 +125,16 @@ public class appiumTest {
      * 视频模块
      */
     private void videoHandle() {
-        MobileElement el13 = (MobileElement) driver.findElementById("com.jifen.qukan:id/jx");
-        el13.click();
+        try {
+            MobileElement el13 = (MobileElement) driver.findElementById("com.jifen.qukan:id/jz");
+            el13.click();
 
-        timeouts.implicitlyWait(1000, TimeUnit.MILLISECONDS);
+            timeouts.implicitlyWait(1000, TimeUnit.MILLISECONDS);
 
-        autoClickPlayVideo();
+            autoClickPlayVideo();
+        }catch (Exception e){
+            tearDown();
+        }
     }
 
     /**
@@ -162,11 +173,12 @@ public class appiumTest {
 
         //判断是否是播放结束后的广告
         boolean isEndElAd=judgeIsAd(By.xpath(endAdText));
+        boolean isEndElAd2=judgeIsAd(By.xpath(endAdText2));
 
         if (isElAd){
             logger.info("===此条是广告===");
             continueHandle();
-        }else if (isEndElAd){
+        }else if (isEndElAd||isEndElAd2){
             logger.info("===已进入广告===");
             continueHandle();
         }else {
@@ -174,14 +186,14 @@ public class appiumTest {
 
             //获取时长
 
-            MobileElement timeTv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a80"));
+            MobileElement timeTv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a8a"));
             String duration = timeTv.getAttribute("text");
             String[] split = duration.split(":");
             long time = (Integer.parseInt(split[0]) * 60 + Integer.parseInt(split[1]   ));
             logger.info("duration===" + duration + "time===" + time);
 
             //播放按钮
-            MobileElement playIv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a6k"));
+            MobileElement playIv = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/a6v"));
             playIv.click();
             //总时长
             timeCount += time;
@@ -191,33 +203,36 @@ public class appiumTest {
              * WebDriverWait默认每500毫秒调用ExpectedCondition直到它成功返回。
              * ExpectedCondition类型的成功返回是布尔值true或非null的返回值。
              */
-            WebDriverWait webDriverWait = new WebDriverWait(driver, time*2);
-            webDriverWait.until(new ExpectedCondition<WebElement>() {
-                @Override
-                public WebElement apply(WebDriver webDriver) {
-                    MobileElement webElement = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/aej"));
-                    //统计金币数量
-                    //plusMoney();
-                    if (webElement!=null){
-                        String value=webElement.getAttribute("text");
-                        if (value.equals("重播")){
-                            logger.info("findElement==重播");
-                            return webElement;
+            WebDriverWait webDriverWait = new WebDriverWait(driver, time+20);
+            try {
+                webDriverWait.until(new ExpectedCondition<WebElement>() {
+                    @Override
+                    public WebElement apply(WebDriver webDriver) {
+                        MobileElement webElement = (MobileElement) isElementPresent(By.id("com.jifen.qukan:id/aey"));
+                        //统计金币数量
+                        //plusMoney();
+                        if (webElement!=null){
+                            String value=webElement.getAttribute("text");
+                            if (value.equals("重播")){
+                                logger.info("findElement==重播");
+                                return webElement;
+                            }else {
+                                logger.info("findElement==正在播放=="+currentTotalTime);
+                                return null;
+                            }
                         }else {
                             logger.info("findElement==正在播放=="+currentTotalTime);
                             return null;
                         }
-                    }else {
-                        logger.info("findElement==正在播放=="+currentTotalTime);
-                        return null;
                     }
-                }
-            });
+                });
+                currentTotalTime="已播放总时长："+ timeCount +"s";
+                logger.info("===播放完毕==="+currentTotalTime);
 
-            currentTotalTime="已播放总时长："+ timeCount +"s";
-            logger.info("===播放完毕==="+currentTotalTime);
-
-            continueHandle();
+                continueHandle();
+            }catch (Exception e){
+                tearDown();
+            }
         }
     }
 
@@ -271,8 +286,11 @@ public class appiumTest {
 
     @After
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
         logger.info("==end==");
+        System.out.println("异常返回");
+        driver.navigate().back();
+        videoHandle();
     }
 
 }

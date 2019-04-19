@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7492c3bc-438b-46ff-96c2-cb6777730021" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ElementListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javaAppiunTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/javaAppiunTest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/appiumTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/appiumTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/appiumTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/appiumTest$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/appiumTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/appiumTest.class" afterDir="false" />
@@ -20,10 +18,11 @@
     <session id="-1020720939">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="5" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -44,13 +43,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2066" />
+          <entry key="java" value="2164" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2066" />
+          <entry key="JAVA" value="2164" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -61,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/appiumTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="162" column="23" lean-forward="true" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
+            <state relative-caret-position="484">
+              <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#loginHandle#0;class#appiumTest#0" />
@@ -98,9 +97,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1975" />
+    <option name="width" value="1974" />
     <option name="height" value="1129" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -110,6 +109,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -126,13 +126,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554981912397" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555639462715" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -186,7 +185,12 @@
       <option name="presentableId" value="Default" />
       <updated>1554858059182</updated>
       <workItem from="1554858061411" duration="24150000" />
-      <workItem from="1554944664922" duration="18612000" />
+      <workItem from="1554944664922" duration="18976000" />
+      <workItem from="1555031890179" duration="6594000" />
+      <workItem from="1555291029402" duration="1693000" />
+      <workItem from="1555466477661" duration="1984000" />
+      <workItem from="1555550433714" duration="152000" />
+      <workItem from="1555638470255" duration="741000" />
     </task>
     <task id="LOCAL-00001" summary="11">
       <created>1554890685609</created>
@@ -195,48 +199,56 @@
       <option name="project" value="LOCAL" />
       <updated>1554890685609</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="11">
+      <created>1554982736200</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554982736200</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="appiumTest_plus - 2019.04.11 at 15h 01m 56s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.15 at 12h 00m 25s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 15h 20m 36s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.15 at 13h 01m 07s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 18h 01m 23s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.15 at 14h 29m 47s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 08m 10s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.17 at 10h 01m 25s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 08m 37s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.17 at 12h 00m 18s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 10m 01s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.17 at 16h 24m 13s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 12m 55s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.18 at 09h 21m 15s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 13m 42s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.18 at 09h 21m 52s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 16m 48s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.19 at 09h 48m 31s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="appiumTest_plus - 2019.04.11 at 19h 17m 26s.xml">
+    <history-entry file="appiumTest_plus - 2019.04.19 at 09h 50m 16s.xml">
       <configuration name="appiumTest.plus" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42762000" />
+    <option name="totallyTimeSpent" value="54290000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1974" height="1129" extended-state="6" />
+    <frame x="0" y="23" width="1974" height="1129" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15140478" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16077003" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -245,7 +257,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39489195" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4027505" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39980355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -303,29 +315,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="33" column="46" lean-forward="true" selection-start-line="31" selection-start-column="12" selection-end-line="33" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/appiumTest.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/appiumTest2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/appiumTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/appiumTest2.java" />
     <entry file="file://$PROJECT_DIR$/target/test-classes/appiumTest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -341,8 +339,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/appiumTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="162" column="23" lean-forward="true" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
+        <state relative-caret-position="484">
+          <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#loginHandle#0;class#appiumTest#0" />
